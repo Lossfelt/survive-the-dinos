@@ -48,9 +48,73 @@ The colony was entirely surrounded by electrified and guarded barriers, to prote
 
 ## Brukergrensesnitt
 
-- Visning av karakterens kropp med visuell presentasjon av helse.
-	- Inspirert av Project Zomboids presentasjon av helse.
-- Kanskje litt pikselert grafikk for å gi retrofølelsen, og følelsen av et enkelt spill.
+Første skisse: [game-screen-conecpt.tldraw](game-screen-conecpt.tldraw).
+
+### Skjermoppsett (besluttet)
+
+- **Venstre panel:** Kroppen med helse. Under figuren: raske målere for sult, tørst, søvn og stamina.
+- **Midtfelt:** Kart i to nivåer.
+	- Kolonikart der lokasjonene (hus, sykestue, vannverk osv.) er noder eller ruter man reiser mellom.
+	- Lokasjonsvisning når man går inn et sted: rom, funn og valg.
+	- Mulig senere: et lite taktisk rutenett kun i spente situasjoner (innbrudd, møte med dinosaur).
+- **Høyre panel:** Det som endrer seg fra tur til tur: inventar, utstyr og hva som finnes der karakteren står (gjenstander, dører, dyr, mennesker).
+- **Stats og skills** får ikke fast plass, men ligger på et eget karakterark bak en fane eller hurtigtast.
+- **Må også være med:** tid, dag/natt og vær, samt en hendelseslogg for det som skjedde denne turen.
+
+### Kroppssoner på helsefiguren
+
+Prinsipp: en kroppsdel får bare egen sone hvis skade der gir en egen konsekvens i spillet.
+
+| Område | Soner | Hva skade der påvirker |
+| --- | --- | --- |
+| Hode | Hodeskalle, øyne, nese, munn, ører | Øyne: sikt og presisjon. Ører: høre dyr og mennesker som nærmer seg. Munn: spise, drikke, samtale. Nese: lukt (råtten mat, dårlig vann). Hodeskalle: hjernerystelse, bevisstløshet |
+| Hals | Én sone (vurderes) | Alvorlige blødninger |
+| Overkropp | Bryst, mage, rygg | Bryst: pust og stamina. Mage: indre skader, infeksjon. Rygg: bæreevne |
+| Armer | Arm og hånd, venstre og høyre | Hånd: våpen, verktøy, dirking. Dominant hånd kan ha betydning |
+| Bein | Bein og fot, venstre og høyre | Bein: fart og flukt. Fot: gange, lyd, beskyttelse fra sko |
+
+- Hånden er minste sone. Fingre er ikke egne soner, men skader kan være presise ("brukket finger, venstre hånd") og gi mindre konsekvenser, f.eks. litt redusert Dexterity.
+- Ansiktets små soner vises i et forstørret hode ved hover eller klikk.
+- Skadetyper (bitt, kutt, brudd, infeksjon osv.) vises med farge på sonen pluss ikon, med detaljer ved hover.
+
+### Skademodell og skadeinformasjon
+
+Hver skade har disse egenskapene, som vises når man holder musepekeren over sonen eller skaden i listen:
+
+| Egenskap | Eksempel (brannskade på hånden) |
+| --- | --- |
+| Type | Brannskade, 2. grad |
+| Tid før den gror av seg selv | 3-5 uker |
+| Negative effekter nå | Kan ikke holde noe, -2 DEX, smerte -10 % stamina |
+| Utvikling over tid | 40 % infeksjonsrisiko. Andre skader kan gi kontinuerlig tap, f.eks. indre blødning |
+| Sjanse for godt utfall uten behandling | 50 % god funksjon i hånden (f.eks. brudd som ikke gipses: sjanse for å gro skjevt) |
+| Mulig behandling | Bandasjer |
+
+- **Behandlingshandlinger viser effekten før man velger dem:** en sammenligning av nå og etter for tid, risiko, utfall og effekter, pluss hva handlingen koster (tid, ressurser, f.eks. at genseren blir bandasje).
+- Det samme gjelder handlinger som ikke er medisinske, men påvirker helsen (f.eks. hvile gjør at hjernerystelsen gror raskere).
+- **Førstehjelp styrer hva man vet (besluttet):** presisjonen i tallene avhenger av Førstehjelp. Lav ferdighet gir brede anslag eller bare ord ("trolig noen uker"), høy ferdighet gir presise tall. Da blir førstehjelp også kunnskap, ikke bare bedre behandling.
+
+### Spor av det karakteren har vært gjennom (besluttet)
+
+Karakteren skal ikke virke like duggfrisk på dag 100 som på dag 1.
+
+- **Arr:** Skader som har grodd kan etterlate arr. Arrene vises ikke på helseindikatoren, men på karakterarket, på en egen kroppsfigur. Hvert arr har en kort historie, f.eks. "Bitt av raptor, dag 12, Vannverket".
+	- Om et arr gror dårlig (se "sjanse for godt utfall") kan det gi varig effekt, f.eks. nedsatt hørsel eller stivere hånd. Arr som bare er kosmetiske, er rene minner.
+	- Om arr påvirker hvordan mennesker reagerer, er et åpent spørsmål (se nederst).
+- **Logg over beseirede fiender:** hvilke dyr og mennesker man har beseiret, når og hvor. Kan også vise hvilke arter man har sett, siden kunnskap om arter kan påvirke hvordan man takler dem.
+- Begge deler hører naturlig hjemme på karakterarket og i et sammendrag når spillet er over.
+
+### Visuell stil (besluttet: pikselgrafikk)
+
+- Valgt etter stilprototype med tre varianter: pikselgrafikk, feltdagbok og kolonistens terminal. Pikselgrafikk var klar favoritt. Se [prototype/stil/NOTES.md](prototype/stil/NOTES.md).
+- Grafikken genereres med kode i stedet for å tegnes for hånd: sprites som tekstrutenett med fast palett, prosedyrisk terreng med støyfunksjon og dithering.
+- Tekst og tall skal være lettleste.
+- Kjente forbedringspunkter fra prototypen, i prioritert rekkefølge:
+	1. ~~Kroppsfiguren~~ (forbedret i prototypen): enkel figur i nøytral grå med skygge og kontur, uten klær eller hår, slik at den leses som et diagram. Forside og bakside (ryggen synlig). Korte lår og store føtter for lesbarhet. Skader legges over sonen som gul, oransje eller rød etter alvorlighet.
+	2. ~~Ansiktet~~ (forbedret i prototypen): et forstørret hode som enkel grå oval med kontur. Øyne, nese og munn er ikke tegnet inn, men vises først når de er skadet, som fargede felt. Skadede områder (panne/hodeskalle, øyne, nese, munn, ører) farges. Status for hver sone står ved siden av.
+	3. Kartet tar for mye plass og skyver lokasjon og logg ut av skjermen. Bygningene er små og navnene konkurrerer om plassen.
+	4. Nattfilteret gjør kartet mørkt og kan gå ut over lesbarheten.
+	5. Fontvalg: pikselfont bare i overskrifter, eller overalt?
 
 ## Teknologi
 
@@ -59,5 +123,6 @@ The colony was entirely surrounded by electrified and guarded barriers, to prote
 
 ## Åpne spørsmål
 
+- Skal utseendet påvirke hvordan mennesker reagerer på deg? I så fall må flere ting henge sammen: arr, om man er synlig bevæpnet, hvor frisk eller skadet man ser ut, klær og trofeer (f.eks. et kjede av dinosaurtenner gir inntrykk av at man ikke er til å tulle med).
 - Skal kamp gå over flere runder eller avgjøres i én runde?
 - Hvis kamp går over flere runder, skal man kunne ta valg etter hver runde, eller skal man sette opp en "kjøreplan"? Dvs man definerer hvordan karakteren forholder seg i kamp og så blir det en auto-battler.

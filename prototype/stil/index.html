@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="nb">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Stilprototype: Survive the Dinos</title>
+<!-- PROTOTYPE (kastes): tre visuelle stiler for samme skjermbilde, byttes med ?variant=A|B|C eller piltastene. -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Silkscreen&family=Caveat:wght@400;700&family=Patrick+Hand&family=VT323&display=swap">
+<style>
+  * { box-sizing: border-box; }
+  html, body { margin: 0; min-height: 100%; }
+  #tip { position: fixed; z-index: 200; pointer-events: none; max-width: 340px; }
+  .tip-type { margin: 2px 0 4px; opacity: .85; font-style: italic; }
+  .tip-table { border-collapse: collapse; }
+  .tip-table td { padding: 1px 10px 1px 0; vertical-align: top; }
+  .tip-table td:first-child { opacity: .65; white-space: nowrap; }
+  .tip-head td { opacity: .65; }
+  .tip-bad { color: #c8502e; }
+  .tip-good { color: #3f8f45; }
+  .tip-note { margin-top: 5px; font-size: .85em; opacity: .6; }
+  #sheet { position: fixed; inset: 0; z-index: 40; display: grid; place-items: center; background: rgba(0,0,0,.55); }
+  #sheet[hidden], #tip[hidden] { display: none; }
+  #switcher {
+    position: fixed; bottom: 14px; left: 50%; transform: translateX(-50%); z-index: 100;
+    display: flex; align-items: center; gap: 10px; padding: 6px 10px;
+    background: #fff; color: #111; border-radius: 999px; box-shadow: 0 4px 18px rgba(0,0,0,.45);
+    font: 600 14px/1 system-ui, sans-serif;
+  }
+  #switcher button { border: 0; background: #111; color: #fff; width: 30px; height: 30px; border-radius: 50%; cursor: pointer; font-size: 16px; }
+  #sw-label { min-width: 190px; text-align: center; }
+</style>
+<style id="variant-css"></style>
+</head>
+<body>
+<div id="app"></div>
+<div id="tip" hidden></div>
+<div id="sheet" class="sheet" hidden></div>
+<div id="switcher">
+  <button id="sw-prev" aria-label="Forrige stil">←</button>
+  <span id="sw-label"></span>
+  <button id="sw-next" aria-label="Neste stil">→</button>
+</div>
+<script src="shared.js"></script>
+<script src="variant-piksel.js"></script>
+<script src="variant-piksel-kropp.js"></script>
+<script src="variant-dagbok.js"></script>
+<script src="variant-terminal.js"></script>
+<script>
+  startPrototype([
+    { key: 'A', name: 'Pikselgrafikk', css: PIXEL_CSS, render: renderPixel },
+    { key: 'B', name: 'Feltdagbok', css: JOURNAL_CSS, render: renderJournal },
+    { key: 'C', name: 'Kolonistens terminal', css: TERMINAL_CSS, render: renderTerminal },
+  ]);
+</script>
+</body>
+</html>
