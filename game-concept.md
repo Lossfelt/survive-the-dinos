@@ -23,6 +23,7 @@ The colony was entirely surrounded by electrified and guarded barriers, to prote
 - Lage ting som hjelper til overlevelse.
 - Behov for mat, vann, søvn og beskyttelse/klær.
 - Kamp med fiendtlig innstilte dyr (kansje mennesker?) og byttedyr.
+	- Det kan være alle typer dinosaurer tilstede, med det argument at forskerne har hentet dem fra ulike tidsepoker for å studere dem, og at inngjerdingen har feilet.
 - Sweet-spot mellom determinisme og tilfeldighet. Det bør ikke være slik at hvis du har et spyd i stål så vil du alltid vinne over feks en stegosaurus, men det skal heller ikke være helt tilfeldig. Jeg ser for meg at utfallet av ting tar høyde for flere involverte elementer, pluss en viss tilfeldighet. Feks til kamp kan det være kombinasjonen av hvilket våpen karakteren har, pluss skill, pluss stats (styrke, dexterity), pluss helsen (inkludert stamina), pluss den fysiske situasjonen (overraskelsesangrep, lys/mørke, etc), pluss tilsvarende beregninger for motstanderens situasjon.
 - Turbasert spill, ikke realtime.
 - For overlevelse og scavenging, kanskje la seg inspirere av NeoScavenger.
@@ -41,7 +42,9 @@ The colony was entirely surrounded by electrified and guarded barriers, to prote
 	- Tilgang på førstehjelpsutstyr vil være viktig.
 	- Sitt eget hus har man nøkler til, men andre hus vil trolig være låst. Hvis man blir nødt til å bryte seg inn et sted så vil det lage lyd, som kan tiltrekke dyr og mennesker.
 		- Noen karakterer vil kanskje kunne åpne dører og vinduer stille, slik som vaktmester, noen med kriminell bakgrunn, etc.
+	- Alle aktiviteter bør inn i en tabell som blant annet sier hvor lang tid de tar, støynivå de genererer, m.m.
 	- Kolonien bør inneholde mange lokasjoner, feks hus, hager/åkre for mat, sykestue, administrativt senter, driftsbygning, reaktor for strøm, vannverk, vaktposter, butikk, etc.
+		- Kolonien bør ha et randomisert layout ved start av hvert spill.
 
 ## Brukergrensesnitt
 
